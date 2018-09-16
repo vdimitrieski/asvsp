@@ -23,7 +23,7 @@ docker run -d -v="db-data:/var/lib/postgresql/data" --net back-tier --name db po
 
 # Izgradnja i pokretanje worker kontejnera, uz povezivanje na 'back-tier' mrezu i mapiranje portova
 docker build -t worker:1.0 ./worker
-docker run -d --network="back-tier" --name worker worker:1.0
+docker run -d --net back-tier --name worker worker:1.0
 
 # Izgradnja i pokretanje result kontejnera, uz povezivanje na 'back-tier' i 'front-tier' mrezu i mapiranje portova
 docker build -t result:1.0 ./result

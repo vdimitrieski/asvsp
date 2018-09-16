@@ -1,5 +1,5 @@
 #!/bin/bash
-#Skripta pokretanje resenja zadatka 2
+#Skripta za pokretanje resenja zadatka 3
 
 # Komanda pomocu koje se vrsi ispis svake komand pre pokretanja
 #set -o xtrace
@@ -8,7 +8,11 @@
 # docker stop $(docker ps -a -q)
 # docker rm $(docker ps -a -q)
 
-docker build -t zadatak2:1.0 .
-docker run -d --name zadatak2 -p 8085:80 zadatak2:1.0
+docker network create webnet
+
+docker build -t zadatak3:1.0 .
+docker run -d --net webnet --name zadatak3 -p 8085:80 zadatak3:1.0
+
+docker run -d --net webnet -v="/home/docker/data:/data" --name redis -p 6379:6379 redis
 
 #set +o xtrace
