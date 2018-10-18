@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  webapp: 
+    build: .
+    ports:
+      - "8085:80"
+    networks:
+      - webnet
+    container_name: webapp
+
+  redis:
+    image: redis
+    ports: ["6379"]
+    networks:
+      - webnet
+    volumes:
+      - "redis-data:/data"
+    container_name: redis
+
+networks:
+  webnet:
+
+volumes:
+  redis-data:
+
