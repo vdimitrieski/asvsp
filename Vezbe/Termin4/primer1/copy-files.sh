@@ -1,0 +1,1 @@
+docker cp . docker-hadoop_resourcemanager_1:/example1/
