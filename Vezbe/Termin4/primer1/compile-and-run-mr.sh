@@ -1,8 +1,9 @@
+#!/bin/bash
 cd example1
 
 printf "\nCOPY FILE TO HDFS\n"
 
-$HADOOP_PREFIX/bin/hdfs dfs -put sample.txt /units
+hdfs dfs -put sample.txt /units
 
 printf "\nSET CLASSPATHS\n"
 
@@ -22,4 +23,4 @@ hadoop jar ProcessUnits.jar ProcessUnits /units /units_out
 
 printf "\nRESULTS\n"
 
-$HADOOP_PREFIX/bin/hdfs dfs -cat /units_out/*
+hdfs dfs -cat /units_out/*

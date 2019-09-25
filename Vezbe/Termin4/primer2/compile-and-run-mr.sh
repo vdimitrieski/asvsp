@@ -1,8 +1,9 @@
+#!/bin/bash
 cd example2
 
 printf "\nCOPY FILE TO HDFS\n"
 
-$HADOOP_PREFIX/bin/hdfs dfs -put SalesJan2009.csv /sales
+hdfs dfs -put SalesJan2009.csv /sales
 
 printf "\nSET CLASSPATHS\n"
 
@@ -10,11 +11,11 @@ export CLASSPATH="$HADOOP_PREFIX/share/hadoop/mapreduce/hadoop-mapreduce-client-
 
 printf "\nCOMPILE JAVA\n"
 
-javac -d . SalesMapper.java SalesCountryReducer.java SalesCountryDriver.java
+javac -d . src/*.java
 
 printf "\nBUILD JAR\n"
 
-jar cfm ProductSalePerCountry.jar Manifest.txt SalesCountry/*.class
+jar cfm ProductSalePerCountry.jar src/Manifest.txt SalesCountry/*.class
 
 printf "\nRUN MAP-REDUCE\n"
 
@@ -22,4 +23,4 @@ hadoop jar ProductSalePerCountry.jar SalesCountry.SalesCountryDriver /sales /sal
 
 printf "\nRESULTS\n"
 
-$HADOOP_PREFIX/bin/hdfs dfs -cat /sales_out/*
+hdfs dfs -cat /sales_out/*

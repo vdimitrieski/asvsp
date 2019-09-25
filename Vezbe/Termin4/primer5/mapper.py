@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 import sys
 
@@ -24,7 +24,7 @@ for line in sys.stdin:
             personType = splits[1]
             country2digit = splits[2]
 
-        print '%s^%s^%s^%s' % (country2digit, personType,
-                               personName, countryName)
+        print('{}^{}^{}^{}'.format(country2digit, personType,
+                               personName, countryName))
     except:  # errors are going to make your job fail which you may or may not want
         pass
