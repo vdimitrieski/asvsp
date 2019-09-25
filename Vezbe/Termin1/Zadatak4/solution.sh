@@ -28,13 +28,13 @@ docker run -d --net back-tier --name worker worker:1.0
 # Izgradnja i pokretanje result kontejnera, uz povezivanje na 'back-tier' i 'front-tier' mrezu i mapiranje portova
 docker build -t result:1.0 ./result
 # TODO: Promeniti apsolutnu putanju!
-docker run -d --net front-tier --name result -p 5000:80 -p 5858:5858 -v="/home/todorovic/Desktop/docker-tutorial/microservices-example/example-voting-app/result:/app" result:1.0
+docker run -d --net front-tier --name result -p 5000:80 -p 5858:5858 result:1.0
 docker network connect back-tier result
 
 # Izgradnja i pokretanje vote kontejnera, uz povezivanje na 'back-tier' i 'front-tier' mrezu i mapiranje portova
 docker build -t vote:1.0 ./vote
 # TODO: Promeniti apsolutnu putanju!
-docker run -d --net front-tier --name vote -p 5001:80 -v="/home/todorovic/Desktop/docker-tutorial/microservices-example/example-voting-app/vote:/app" vote:1.0
+docker run -d --net front-tier --name vote -p 5001:80 vote:1.0
 docker network connect back-tier vote
 
 #set +o xtrace
