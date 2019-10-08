@@ -11,4 +11,4 @@ for myline in sys.stdin:
     # Iterate the words list
     for myword in words:
         # Write the results to standard output
-        print '%s\t%s' % (myword, 1)
+        print('%s\t%s' % (myword, 1))

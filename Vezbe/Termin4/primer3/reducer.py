@@ -24,10 +24,10 @@ for myline in sys.stdin:
     else:
         if current_word:
             # Write result to standard output
-            print '%s\t%s' % (current_word, current_count)
+            print('%s\t%s' % (current_word, current_count))
         current_count = count
         current_word = word
 
 # Do not forget to output the last word if needed!
 if current_word == word:
-    print '%s\t%s' % (current_word, current_count)
+    print('%s\t%s' % (current_word, current_count))

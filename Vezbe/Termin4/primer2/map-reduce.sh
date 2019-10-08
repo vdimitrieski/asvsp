@@ -3,6 +3,7 @@ cd example2
 
 printf "\nCOPY FILE TO HDFS\n"
 
+hdfs dfs -rm -r -f /sales_out/
 hdfs dfs -put SalesJan2009.csv /sales
 
 printf "\nSET CLASSPATHS\n"
