@@ -69,6 +69,18 @@ services:
       - hadoop_historyserver:/hadoop/yarn/timeline
     env_file:
       - ./hadoop.env
+
+  cloudera:
+    image: gethue/hue:latest
+    hostname: hue
+    container_name: hue
+    dns: 8.8.8.8
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./conf.dist:/usr/share/hue/desktop/conf
+    depends_on: 
+      - namenode
   
 volumes:
   hadoop_namenode:
