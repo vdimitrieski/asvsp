@@ -2,7 +2,7 @@ version: "3"
 
 services:
   namenode:
-    image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.1.2-java8
     volumes:
       - namenode:/hadoop/dfs/name
     environment:
@@ -10,17 +10,18 @@ services:
     env_file:
       - ./hadoop-hive.env
     ports:
-      - "50070:50070"
+      - 9870:9870
+      - 9000:9000
   datanode:
-    image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.1.2-java8
     volumes:
       - datanode:/hadoop/dfs/data
     env_file:
       - ./hadoop-hive.env
     environment:
-      SERVICE_PRECONDITION: "namenode:50070"
+      SERVICE_PRECONDITION: "namenode:9870"
     ports:
-      - "50075:50075"
+      - "9864:9864"
   hive-server:
     image: bde2020/hive:2.3.2-postgresql-metastore
     env_file:
@@ -36,7 +37,7 @@ services:
       - ./hadoop-hive.env
     command: /opt/hive/bin/hive --service metastore
     environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432"
+      SERVICE_PRECONDITION: "namenode:9870 datanode:9864 hive-metastore-postgresql:5432"
     ports:
       - "9083:9083"
   hive-metastore-postgresql:
@@ -45,6 +46,17 @@ services:
     image: shawnzhu/prestodb:0.181
     ports:
       - "8080:8080"
+  cloudera:
+    image: gethue/hue:latest
+    hostname: hue
+    container_name: hue
+    dns: 8.8.8.8
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./conf.dist:/usr/share/hue/desktop/conf
+    depends_on: 
+      - hive-server
 
 volumes:
   namenode:
