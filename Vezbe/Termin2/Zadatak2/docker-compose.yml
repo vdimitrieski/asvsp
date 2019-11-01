@@ -15,8 +15,6 @@ services:
   result:
     build: ./result
     command: nodemon server.js
-    volumes:
-      - ./result:/app
     ports:
       - "5001:80"
       - "5858:5858"
@@ -49,6 +47,7 @@ services:
 
 volumes:
   db-data:
+  result:
 
 networks:
   front-tier:
