@@ -16,11 +16,11 @@ javac -d . src/*.java
 
 printf "\nBUILD JAR\n"
 
-jar cfm ProductSalePerCountry.jar src/Manifest.txt SalesCountry/*.class
+jar cfm ProductSalePerCountry.jar src/Manifest.txt sales_country/*.class
 
 printf "\nRUN MAP-REDUCE\n"
 
-hadoop jar ProductSalePerCountry.jar SalesCountry.SalesCountryDriver /sales /sales_out
+hadoop jar ProductSalePerCountry.jar sales_country.SalesCountryDriver /sales /sales_out
 
 printf "\nRESULTS\n"
 

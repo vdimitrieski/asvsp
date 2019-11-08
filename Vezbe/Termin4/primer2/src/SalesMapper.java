@@ -1,4 +1,4 @@
-package SalesCountry;
+package sales_country;
 
 import java.io.IOException;
 

@@ -39,7 +39,7 @@ for line in sys.stdin:
 
             if foundKey != currentKey:  # new combo of keys to count
                 if isFirst == 0:
-                    print '%s\t%s' % (foundKey, currentCount)
+                    print ('%s\t%s' % (foundKey, currentCount))
                     currentCount = 0  # reset the count
                 else:
                     isFirst = 0
@@ -52,6 +52,6 @@ for line in sys.stdin:
         pass
 
 try:
-    print '%s\t%s' % (foundKey, currentCount)
+    print ('%s\t%s' % (foundKey, currentCount))
 except:
     pass
