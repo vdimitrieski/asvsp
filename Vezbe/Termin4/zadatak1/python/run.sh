@@ -1,4 +1,5 @@
 #!/bin/bash
+# docker exec -it resourcemanager bash -c "apt update && apt install python -y"
 # docker exec -it nodemanager1 bash -c "apt update && apt install python -y"
 # docker exec -it nodemanager2 bash -c "apt update && apt install python -y"
 

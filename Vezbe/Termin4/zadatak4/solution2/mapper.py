@@ -10,7 +10,7 @@ def remove_commas(word):
     
     return word.lower()
 
-def dist_to_string(h):
+def dict_to_string(h):
     return "@".join(['%s$%d' % (key, value) for (key, value) in h.items()])
 
 for myline in sys.stdin:
@@ -31,4 +31,4 @@ for myline in sys.stdin:
             else:
                 h[s] = 1
 
-        print("{}#{}".format(f, dist_to_string(h)))
+        print("{}#{}".format(f, dict_to_string(h)))
