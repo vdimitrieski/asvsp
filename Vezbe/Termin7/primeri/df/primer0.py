@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from pyspark.sql import SparkSession
 
 def quiet_logs(sc):
