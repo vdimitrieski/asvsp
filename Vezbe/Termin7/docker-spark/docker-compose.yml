@@ -45,18 +45,6 @@ services:
       - 8081:8081
     env_file:
       - ./hadoop.env
-
-  livy:
-    image: cloudiator/livy-server-docker
-    container_name: livy
-    environment:
-      - SPARK_MASTER_ENDPOINT=spark-master
-      - SPARK_MASTER_PORT=7077
-      - DEPLOY_MODE=client
-    depends_on: 
-      - spark-master
-    ports:
-      - 8998:8998
   
   hue:
     image: gethue/hue:latest

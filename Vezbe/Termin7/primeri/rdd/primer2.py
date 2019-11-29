@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 from pyspark import SparkContext, SparkConf
 
 HDFS_NAMENODE = os.environ["CORE_CONF_fs_defaultFS"]
 
-conf = SparkConf().setAppName("wordcount").setMaster("local")
+conf = SparkConf().setAppName("wordmean").setMaster("local")
 sc = SparkContext(conf=conf)
 
 text_file = sc.textFile(HDFS_NAMENODE + "/dante/divine_comedy.txt")
