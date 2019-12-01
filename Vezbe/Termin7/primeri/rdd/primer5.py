@@ -14,7 +14,7 @@ sc = SparkContext(conf=conf)
 quiet_logs(sc)
 
 data = sc.parallelize([('k',5),('s',3),('s',4),('p',7),('p',5),('t',8),('k',6)],3)
-group = data.groupByKey()
+group = data.groupByKey().mapValues(lambda x : list(x))
 print("GROUP BY KEY:")
 group.foreach(print)
 
