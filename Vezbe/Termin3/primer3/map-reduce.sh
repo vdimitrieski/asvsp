@@ -11,7 +11,7 @@ printf "\nSETTING EXECUTEABLE PY\n"
 
 chmod a+x *.py
 
-cd $HADOOP_PREFIX
+cd $HADOOP_HOME
 
 printf "\nRUN HADOOP-STREAMING\n"
 

@@ -8,7 +8,7 @@ hdfs dfs -put SalesJan2009.csv /sales
 
 printf "\nSET CLASSPATHS\n"
 
-export CLASSPATH="$HADOOP_PREFIX/share/hadoop/mapreduce/hadoop-mapreduce-client-core-$HADOOP_VERSION.jar:$HADOOP_PREFIX/share/hadoop/mapreduce/hadoop-mapreduce-client-common-$HADOOP_VERSION.jar:$HADOOP_PREFIX/share/hadoop/common/hadoop-common-$HADOOP_VERSION.jar:~/example2/*:$HADOOP_PREFIX/lib/*"
+export CLASSPATH="$HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-client-core-$HADOOP_VERSION.jar:$HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-client-common-$HADOOP_VERSION.jar:$HADOOP_HOME/share/hadoop/common/hadoop-common-$HADOOP_VERSION.jar:~/example2/*:$HADOOP_HOME/lib/*"
 
 printf "\nCOMPILE JAVA\n"
 

@@ -2,7 +2,8 @@ version: "3"
 
 services:
   namenode:
-    image: bde2020/hadoop-namenode:2.0.0-hadoop3.1.3-java8
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
     volumes:
       - namenode:/hadoop/dfs/name
     environment:
@@ -12,18 +13,40 @@ services:
     ports:
       - 9870:9870
       - 9000:9000
-  datanode:
-    image: bde2020/hadoop-datanode:2.0.0-hadoop3.1.3-java8
+
+  datanode1:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode1
     volumes:
-      - datanode:/hadoop/dfs/data
+      - datanode1:/hadoop/dfs/data
     env_file:
       - ./hadoop-hive.env
     environment:
       SERVICE_PRECONDITION: "namenode:9870"
-    ports:
-      - "9864:9864"
+
+  datanode2:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode2
+    volumes:
+      - datanode2:/hadoop/dfs/data
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+
+  datanode3:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode3
+    volumes:
+      - datanode3:/hadoop/dfs/data
+    env_file:
+      - ./hadoop-hive.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+
   hive-server:
     image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-server
     env_file:
       - ./hadoop-hive.env
     environment:
@@ -31,17 +54,22 @@ services:
       SERVICE_PRECONDITION: "hive-metastore:9083"
     ports:
       - "10000:10000"
+  
   hive-metastore:
     image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-metastore
     env_file:
       - ./hadoop-hive.env
     command: /opt/hive/bin/hive --service metastore
     environment:
-      SERVICE_PRECONDITION: "namenode:9870 datanode:9864 hive-metastore-postgresql:5432"
+      SERVICE_PRECONDITION: "namenode:9870 datanode1:9864 datanode2:9864 datanode3:9864 hive-metastore-postgresql:5432"
     ports:
       - "9083:9083"
+  
   hive-metastore-postgresql:
     image: bde2020/hive-metastore-postgresql:2.3.0
+    container_name: hive-metastore-postgresql
+
   cloudera:
     image: gethue/hue:latest
     container_name: hue
@@ -55,4 +83,6 @@ services:
 
 volumes:
   namenode:
-  datanode:
+  datanode1:
+  datanode2:
+  datanode3:
