@@ -10,7 +10,7 @@ def quiet_logs(sc):
     logger.LogManager.getLogger("akka").setLevel(logger.Level.ERROR)
 
 
-conf = SparkConf().setAppName("example join").setMaster("local")
+conf = SparkConf().setAppName("example join").setMaster("spark://spark-master:7077")
 sc = SparkContext(conf=conf)
 spark = SparkSession(sc)
 
